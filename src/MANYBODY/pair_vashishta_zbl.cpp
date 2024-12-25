@@ -1,4 +1,4 @@
-#include "pair_vashishta.h"
+#include "pair_vashishta_zbl.h"
 
 #include "atom.h"
 #include "comm.h"
@@ -34,7 +34,7 @@ PairVashishtaZBL::PairVashishtaZBL(LAMMPS *lmp) : PairVashishta(lmp)
 
 /*-----------------------------------------------------*/
 
-void PairVashishta::read_file(char *file)
+void PairVashishtaZBL::read_file(char *file)
 {
   memory->sfree(params);
   params = nullptr;
@@ -149,7 +149,7 @@ void PairVashishta::read_file(char *file)
 
 /*-----------------------------------------------------*/
 
-void PairVashishta::twobody(Param *param, double rsq, double &fforce,
+void PairVashishtaZBL::twobody(Param *param, double rsq, double &fforce,
                             int eflag, double &eng)
 {
   double r,rinvsq,r4inv,r6inv,reta,lam1r,lam4r,vc2,vc3;
@@ -210,7 +210,7 @@ void PairVashishta::twobody(Param *param, double rsq, double &fforce,
    Fermi-like smoothing function
 ------------------------------------------------------------------------- */
 
-double PairTersoffZBL::F_fermi(double r, Param *param)
+double PairVashishtaZBL::F_fermi(double r, Param *param)
 {
   return 1.0 / (1.0 + exp(-param->ZBLexpscale*(r-param->ZBLcut)));
 }
@@ -219,7 +219,7 @@ double PairTersoffZBL::F_fermi(double r, Param *param)
    Fermi-like smoothing function derivative with respect to r
 ------------------------------------------------------------------------- */
 
-double PairTersoffZBL::F_fermi_d(double r, Param *param)
+double PairVashishtaZBL::F_fermi_d(double r, Param *param)
 {
   return param->ZBLexpscale*exp(-param->ZBLexpscale*(r-param->ZBLcut)) /
     square(1.0 + exp(-param->ZBLexpscale*(r-param->ZBLcut)));

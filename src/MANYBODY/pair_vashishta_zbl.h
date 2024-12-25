@@ -23,7 +23,7 @@ class PairVashishtaZBL : public PairVashishta {
   double global_e;            // proton charge (negative of electron charge)
 
   void read_file(char *) override;
-  void twobody(Param *param, double rsq, double &fforce, int eflag, double &eng)
+  void twobody(Param *param, double rsq, double &fforce, int eflag, double &eng) override;
 
   double F_fermi(double, Param *);
   double F_fermi_d(double, Param *);

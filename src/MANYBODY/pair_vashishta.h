@@ -55,10 +55,10 @@ class PairVashishta : public Pair {
   int *neighshort;    // short neighbor list array
 
   void allocate();
-  void read_file(char *);
+  virtual void read_file(char *);
   virtual void setup_params();
-  void twobody(Param *, double, double &, int, double &);
-  void threebody(Param *, Param *, Param *, double, double, double *, double *, double *, double *,
+  virtual void twobody(Param *, double, double &, int, double &);
+  virtual void threebody(Param *, Param *, Param *, double, double, double *, double *, double *, double *,
                  int, double &);
 };
 
